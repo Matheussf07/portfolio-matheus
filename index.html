@@ -1,112 +1,77 @@
-<!-- 1. Declaração de que é um documento HTML5 -->
 <!DOCTYPE html>
-
-<!-- 2. Tag raiz, com idioma configurado para português do Brasil -->
 <html lang="pt-BR">
-
-<!-- 3. Cabeçalho do site  -->
 <head>
-    <!-- Define os caracteres especiais -->
     <meta charset="UTF-8">
-    
-    <!-- Faz o site se adaptar a telas de celular/tablet -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Título que aparece na aba do navegador -->
-    <title>Meu Portfólio - [SEU NOME]</title>
-    
-    <!-- Avisa que vamos usar um arquivo CSS externo -->
+    <title>Meu Portfólio - Matheus</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
-<!-- 4. Corpo do site -->
 <body>
-    
-<!-- CABEÇALHO COM O MENU -->
-<header>
-    <nav>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre mim</a></li>
+                <li><a href="#formacao">Formação</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <button id="theme-toggle">🌙</button>
+    </header>
+
+    <section id="sobre">
+        <h1>Sobre mim</h1>
+        <p>Olá! Meu nome é Matheus dos Santos Ferreira, tenho 30 anos e gosto de tecnologia, desenvolver programas para facilitar a vida e aprender coisas novas.</p>
+    </section>
+
+    <section id="formacao">
+        <h2>Formação</h2>
         <ul>
-            <li><a href="#sobre">Sobre mim</a></li>
-            <li><a href="#formacao">Formação</a></li>
-            <li><a href="#portfolio">Portfólio</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><strong>Curso superior:</strong> Análise e Desenvolvimento de Sistemas - UNINTER (2025 - 2028)</li>
+            <li><strong>Idiomas:</strong> Português (nativo), Inglês (intermediário)</li>
+            <li><strong>Cursos complementares:</strong> HTML e CSS na prática, Lógica de Programação</li>
         </ul>
-    </nav>
-    <!-- BOTÃO DE TEMA – VERIFIQUE SE ELE ESTÁ AQUI -->
-    <button id="theme-toggle">🌙</button>
-</header>
+    </section>
 
-<!-- SEÇÃO 1: SOBRE MIM -->
-<section id="sobre">
-    <h1>Sobre mim</h1>
-    <p>Olá! Meu nome é Matheus dos Santos Ferreira, tenho 30 anos e gosto de tecnologia, desenvolver programas para facilitar a vida e aprender coisas novas.</p>
-</section>
+    <section id="portfolio">
+        <h2>Portfólio</h2>
+        <p>Confira alguns trabalhos que já desenvolvi:</p>
+        <ul>
+            <li>
+                <strong><a href="calculadora.html" target="_blank">🧮 Calculadora Web</a></strong>
+                <br>
+                <span>Calculadora interativa com operações básicas.</span>
+            </li>
+            <li>
+                <strong><a href="snake.html" target="_blank">🐍 Jogo da Cobrinha (Snake)</a></strong>
+                <br>
+                <span>Clássico jogo Snake com canvas e controles.</span>
+            </li>
+        </ul>
+    </section>
 
-<!-- SEÇÃO 2: FORMAÇÃO -->
-<section id="formacao">
-    <h2>Formação</h2>
-    <ul>
-        <li><strong>Curso superior:</strong> Análise e Desenvolvimento de Sistemas - UNINTER (2025 - 2028)</li>
-        <li><strong>Idiomas:</strong> Português (nativo), Inglês (intermediário)</li>
-        <li><strong>Cursos complementares:</strong> HTML e CSS na prática, Lógica de Programação</li>
-    </ul>
-</section>
+    <section id="contato">
+        <h2>Contato</h2>
+        <p>Envie uma mensagem para mim:</p>
+        <form id="contact-form">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
 
-<!-- SEÇÃO 3: PORTFÓLIO -->
-<section id="portfolio">
-    <h2>Portfólio</h2>
-    <p>Confira alguns trabalhos que já desenvolvi:</p>
-    <ul>
-        <li>
-            <strong><a href="calculadora.html" target="_blank">🧮 Projeto 1 - Calculadora Web</a></strong>
-            <br>
-            <span style="font-size: 0.95rem; color: var(--text-color);">
-                Uma calculadora interativa com interface moderna, suporte a teclado físico e operações básicas (+, -, ×, ÷). Desenvolvida com HTML5, CSS3 e JavaScript puro.
-            </span>
-        </li>
-        <li>
-            <strong><a href="snake.html" target="_blank">🐍 Projeto 2 - Jogo da Cobrinha (Snake)</a></strong>
-            <br>
-            <span style="font-size: 0.95rem; color: var(--text-color);">
-                O clássico jogo Snake implementado com canvas, controles por teclado e botões touch, pontuação, reinício e design imersivo.
-            </span>
-        </li>
-        <li>
-            <strong><a href="#" target="_blank">📌 Projeto 3 - (Em breve)</a></strong>
-            <br>
-            <span style="font-size: 0.95rem; color: var(--text-color);">
-                Aqui você pode colocar outro projeto futuro.
-            </span>
-        </li>
-    </ul>
-</section>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="seuemail@email.com" required>
 
-<!-- SEÇÃO 4: CONTATO -->
-<section id="contato">
-    <h2>Contato</h2>
-    <p>Envie uma mensagem para mim:</p>
-    
-    <form id="contact-form">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
-        
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="seuemail@email.com" required>
-        
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" rows="4" placeholder="Escreva sua mensagem..." required></textarea>
-        
-        <button type="submit">Enviar</button>
-    </form>
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" rows="4" placeholder="Escreva sua mensagem..." required></textarea>
 
-    <!-- É aqui que vai aparecer a mensagem de "enviado com sucesso" depois -->
-    <div id="form-feedback"></div>
-</section>
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="form-feedback"></div>
+    </section>
 
-<!-- RODAPÉ -->
-<footer>
-    <p>&copy; 2026 Matheus dos Santos Ferreira - Todos os direitos reservados.</p>
-</footer>
+    <footer>
+        <p>&copy; 2026 Matheus dos Santos Ferreira - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-
 </html>
