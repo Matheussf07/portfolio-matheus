@@ -2,7 +2,6 @@
    PASSO 1: Variáveis de cores (claro e escuro)
    ============================================================ */
 :root {
-    /* Tema claro (padrão) */
     --bg-color: #f4f7fc;
     --text-color: #1e2a3a;
     --header-bg: #ffffff;
@@ -12,7 +11,9 @@
     --shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
+
 /* Quando o body tiver a classe 'dark-mode', sobrescrevemos as variáveis */
+/* ===== TEMA ESCURO ===== */
 body.dark-mode {
     --bg-color: #1a1f2b;
     --text-color: #e8edf5;
@@ -84,19 +85,15 @@ nav a:hover {
 }
 
 /* Botão de alternar tema (claro/escuro) */
-#theme-toggle {
-    background: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.3rem;
-    cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* ===== TEMA ESCURO ===== */
+body.dark-mode {
+    --bg-color: #1a1f2b;
+    --text-color: #e8edf5;
+    --header-bg: #252c3b;
+    --link-color: #70b8ff;
+    --border-color: #3f4859;
+    --card-bg: #252c3b;
+    --shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 #theme-toggle:hover {

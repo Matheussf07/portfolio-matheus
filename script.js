@@ -1,7 +1,8 @@
-// TEMA CLARO/ESCURO
+// ===== TEMA CLARO/ESCURO =====
 const toggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
 
+// Verifica preferência salva
 const temaSalvo = localStorage.getItem('tema');
 if (temaSalvo === 'escuro') {
     body.classList.add('dark-mode');
@@ -10,6 +11,7 @@ if (temaSalvo === 'escuro') {
     toggleBtn.textContent = '🌙';
 }
 
+// Alterna tema ao clicar no botão
 toggleBtn.addEventListener('click', function() {
     body.classList.toggle('dark-mode');
     if (body.classList.contains('dark-mode')) {
@@ -21,12 +23,13 @@ toggleBtn.addEventListener('click', function() {
     }
 });
 
-// VALIDAÇÃO DO FORMULÁRIO
+// ===== VALIDAÇÃO DO FORMULÁRIO =====
 const form = document.getElementById('contact-form');
 const feedback = document.getElementById('form-feedback');
 
 form.addEventListener('submit', function(event) {
     event.preventDefault();
+
     const nome = document.getElementById('nome').value.trim();
     const email = document.getElementById('email').value.trim();
     const mensagem = document.getElementById('mensagem').value.trim();
@@ -50,5 +53,8 @@ form.addEventListener('submit', function(event) {
     feedback.textContent = '✅ Mensagem enviada com sucesso!';
     feedback.style.color = '#2e7d32';
     form.reset();
-    setTimeout(() => { feedback.textContent = ''; }, 5000);
+
+    setTimeout(() => {
+        feedback.textContent = '';
+    }, 5000);
 });
