@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Web - [Seu Nome]</title>
+
+    <style>
+        /* ===== ESTILOS DA CALCULADORA ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+        }
+
+        /* Container principal da calculadora */
+        .calculator-container {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        /* Título e link de voltar */
+        .calculator-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calculator-header h1 {
+            font-size: 1.3rem;
+            color: #1e2a3a;
+            font-weight: 600;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid #0056b3;
+            border-radius: 20px;
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: #0056b3;
+            color: #fff;
+        }
+
+        /* Visor da calculadora */
+        #display {
+            width: 100%;
+            padding: 1rem;
+            font-size: 2.2rem;
+            text-align: right;
+            border: 2px solid #e0e5ec;
+            border-radius: 12px;
+            background: #f8fafc;
+            color: #1e2a3a;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        #display:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+        }
+
+        /* Grade de botões */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        /* Botões gerais */
+        .btn {
+            padding: 1.2rem 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.15s;
+            background: #f1f4f9;
+            color: #1e2a3a;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .btn:hover {
+            background: #e2e8f0;
+            transform: scale(0.97);
+        }
+
+        .btn:active {
+            transform: scale(0.93);
+        }
+
+        /* Botões de operadores (+, -, *, /, =) */
+        .btn-operator {
+            background: #e6edf8;
+            color: #0056b3;
+        }
+
+        .btn-operator:hover {
+            background: #d0def0;
+        }
+
+        /* Botão de igual (=) - destaque */
+        .btn-equals {
+            background: #0056b3;
+            color: #fff;
+        }
+
+        .btn-equals:hover {
+            background: #003d80;
+        }
+
+        /* Botão de limpar (C) */
+        .btn-clear {
+            background: #fee8e8;
+            color: #b91c1c;
+        }
+
+        .btn-clear:hover {
+            background: #fccccc;
+        }
+
+        /* Botão de zero ocupa 2 colunas */
+        .btn-zero {
+            grid-column: span 2;
+        }
+
+        /* Rodapé da calculadora */
+        .calculator-footer {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6b7a8f;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 480px) {
+            .calculator-container {
+                padding: 1.5rem 1rem;
+            }
+            .btn {
+                padding: 1rem 0;
+                font-size: 1.2rem;
+            }
+            #display {
+                font-size: 1.8rem;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator-container">
+        <!-- Cabeçalho com link para voltar ao portfólio -->
+        <div class="calculator-header">
+            <h1>🧮 Calculadora</h1>
+            <a href="index.html" class="back-link">← Voltar</a>
+        </div>
+
+        <!-- Visor -->
+        <input type="text" id="display" readonly placeholder="0">
+
+        <!-- Botões -->
+        <div class="buttons-grid">
+            <!-- Linha 1 -->
+            <button class="btn btn-clear" onclick="clearDisplay()">C</button>
+            <button class="btn btn-operator" onclick="appendToDisplay('/')">÷</button>
+            <button class="btn btn-operator" onclick="appendToDisplay('*')">×</button>
+            <button class="btn btn-operator" onclick="appendToDisplay('-')">−</button>
+
+            <!-- Linha 2 -->
+            <button class="btn" onclick="appendToDisplay('7')">7</button>
+            <button class="btn" onclick="appendToDisplay('8')">8</button>
+            <button class="btn" onclick="appendToDisplay('9')">9</button>
+            <button class="btn btn-operator" onclick="appendToDisplay('+')">+</button>
+
+            <!-- Linha 3 -->
+            <button class="btn" onclick="appendToDisplay('4')">4</button>
+            <button class="btn" onclick="appendToDisplay('5')">5</button>
+            <button class="btn" onclick="appendToDisplay('6')">6</button>
+            <button class="btn btn-equals" onclick="calculateResult()">=</button>
+
+            <!-- Linha 4 -->
+            <button class="btn" onclick="appendToDisplay('1')">1</button>
+            <button class="btn" onclick="appendToDisplay('2')">2</button>
+            <button class="btn" onclick="appendToDisplay('3')">3</button>
+            <!-- Botão de apagar último caractere (backspace) -->
+            <button class="btn btn-operator" onclick="backspace()">⌫</button>
+
+            <!-- Linha 5 -->
+            <button class="btn btn-zero" onclick="appendToDisplay('0')">0</button>
+            <button class="btn" onclick="appendToDisplay('.')">.</button>
+            <!-- Duplicamos o = aqui embaixo para ficar mais fácil, mas vamos deixar só um ou colocar um espaço -->
+            <!-- Melhor: Deixamos o = em cima e aqui embaixo colocamos um botão de (%) ou deixamos vazio, mas vou colocar um botão de parenteses ou duplicar o = para usabilidade -->
+            <button class="btn btn-equals" onclick="calculateResult()">=</button>
+        </div>
+
+        <div class="calculator-footer">
+            <p>Projeto integrante do meu Portfólio</p>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // LÓGICA DA CALCULADORA
+        // ============================================
+
+        // Pega o elemento do visor
+        const display = document.getElementById('display');
+
+        // Função para adicionar números/operadores ao visor
+        function appendToDisplay(value) {
+            // Se o visor estiver mostrando "Erro" ou "Infinity", limpa antes
+            if (display.value === 'Erro' || display.value === 'Infinity' || display.value === 'NaN') {
+                display.value = '';
+            }
+            // Se o valor atual for "0" e o usuário digitar um número, substitui o 0
+            if (display.value === '0' && value !== '.' && value !== '+' && value !== '-' && value !== '*' && value !== '/') {
+                display.value = value;
+            } else {
+                display.value += value;
+            }
+        }
+
+        // Função para limpar tudo
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        // Função para apagar o último caractere (backspace)
+        function backspace() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        // Função para calcular o resultado
+        function calculateResult() {
+            try {
+                // Pega a expressão do visor
+                let expression = display.value;
+
+                // Substitui os símbolos visuais (× e ÷) pelos operadores do JavaScript (* e /)
+                expression = expression.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+
+                // Avalia a expressão de forma segura (apenas para fins educacionais)
+                // Usamos Function constructor para ser mais seguro que eval direto
+                const result = new Function('return (' + expression + ')')();
+
+                // Verifica se o resultado é um número válido
+                if (!isFinite(result)) {
+                    display.value = 'Erro';
+                } else {
+                    // Arredonda para evitar problemas com ponto flutuante (ex: 0.1 + 0.2)
+                    const rounded = Math.round(result * 1000000) / 1000000;
+                    display.value = rounded;
+                }
+            } catch (error) {
+                // Se der erro na expressão (ex: operador seguido de operador)
+                display.value = 'Erro';
+            }
+        }
+
+        // ============================================
+        // BÔNUS: Teclado físico (digitar pelo teclado)
+        // ============================================
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+
+            // Números, operadores e ponto
+            if ((key >= '0' && key <= '9') || key === '.' || key === '+' || key === '-' || key === '*' || key === '/') {
+                event.preventDefault();
+                // Converte * para × e / para ÷ para ficar bonito no visor
+                let displayKey = key;
+                if (key === '*') displayKey = '×';
+                if (key === '/') displayKey = '÷';
+                appendToDisplay(displayKey);
+            }
+
+            // Enter ou = para calcular
+            if (key === 'Enter' || key === '=') {
+                event.preventDefault();
+                calculateResult();
+            }
+
+            // Backspace para apagar
+            if (key === 'Backspace') {
+                event.preventDefault();
+                backspace();
+            }
+
+            // Escape ou 'c' para limpar
+            if (key === 'Escape' || key === 'c' || key === 'C') {
+                event.preventDefault();
+                clearDisplay();
+            }
+        });
+    </script>
+
+</body>
+</html>
