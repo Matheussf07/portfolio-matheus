@@ -2,27 +2,6 @@
 const toggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Verifica preferência salva
-const temaSalvo = localStorage.getItem('tema');
-if (temaSalvo === 'escuro') {
-    body.classList.add('dark-mode');
-    toggleBtn.textContent = '☀️';
-} else {
-    toggleBtn.textContent = '🌙';
-}
-
-// Alterna tema ao clicar no botão
-toggleBtn.addEventListener('click', function() {
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-        toggleBtn.textContent = '☀️';
-        localStorage.setItem('tema', 'escuro');
-    } else {
-        toggleBtn.textContent = '🌙';
-        localStorage.setItem('tema', 'claro');
-    }
-});
-
 // ===== VALIDAÇÃO DO FORMULÁRIO =====
 const form = document.getElementById('contact-form');
 const feedback = document.getElementById('form-feedback');
